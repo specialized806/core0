@@ -21,7 +21,7 @@ Each of the distributions can be downloaded from:
 - [Microsoft .NET website](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [.NET 8 release notes](README.md)
 
-[Container images](https://hub.docker.com/r/microsoft/dotnet/) are provided for Linux (Alpine, Debian, and Ubuntu).
+[Container images](https://hub.docker.com/_/microsoft-dotnet) are provided for Linux (Alpine, Debian, and Ubuntu).
 
 ## Install using deb/rpm packages
 
@@ -35,7 +35,7 @@ Preview release installers are not available from the Microsoft package reposito
 
 Here's what the script does.
 
-- Detects the distribution and version. The script supports platforms and versions listed in [.NET 8.0 - Supported OS versions](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md).
+- Detects the distribution and version. The script supports platforms and versions listed in [.NET 8.0 - Supported OS versions](supported-os.md).
 - Determines if additional system dependencies or utilities are needed to successfully complete and install them. For example, `tar` is used to unpack that installer packages.
 - Downloads the tar.gz containing the .NET preview installer packages for the detected distribution.
 - Downloads the system dependency installer, if needed.
@@ -44,17 +44,19 @@ Here's what the script does.
 
 ## Install using Snap
 
+**Note:** On 30 April 2024, all existing .NET Snaps are transferred from Microsoft to Canonical. Please see [this announcement](https://github.com/dotnet/announcements/issues/304) for details.
+
 You can use Snap is to install and try .NET Previews on [Linux distributions that support Snap](https://snapcraft.io/docs/installing-snapd).
 
 After configuring Snap on your system, run the following command to install the latest .NET SDK.
 
-`sudo snap install dotnet-sdk --channel=8.0/beta --classic`
+`sudo snap install dotnet-sdk --channel=8.0 --classic`
 
 When .NET is installed using the Snap package, the default .NET command is `dotnet-sdk.dotnet`, as opposed to just `dotnet`. The benefit of the namespaced command is that it will not conflict with a globally installed .NET version you may have. This command can be aliased to `dotnet` with:
 
 `sudo snap alias dotnet-sdk.dotnet dotnet`
 
-**Note:** Some distributions require an additional step to enable access to the SSL certificate. If you experience SSL errors when running `dotnet restore`, see [Linux Setup](https://github.com/dotnet/core/blob/main/Documentation/linux-setup.md) for a possible resolution.
+**Note:** Some distributions require an additional step to enable access to the SSL certificate. If you experience SSL errors when running `dotnet restore`, see [.NET for Linux Distributions](../../linux.md) for a possible resolution.
 
 ## Installing from a binary archive
 
@@ -63,14 +65,14 @@ You can install .NET with a binary archive. This option is required if you want 
 The following workflow demonstrates downloading, unpacking, configuring, and running the .NET SDK from the command line. You may choose to do some of these tasks via the browser and functionality provided by your operating system.
 
 ```bash
-~# curl -Lo dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/103d5e2c-d5c4-4101-bb6e-b82bc73a7d93/284a5cdccbc995f39806a3ba2dc17b93/dotnet-sdk-8.0.100-preview.3.23178.7-linux-x64.tar.gz
+~# curl -Lo dotnet.tar.gz https://download.visualstudio.microsoft.com/download/pr/a91ddad4-a3c2-4303-9efc-1ca6b7af850c/be1763df9211599df1cf1c6f504b3c41/dotnet-sdk-8.0.405-linux-x64.tar.gz
 ~# mkdir dotnet
 ~# tar -C dotnet -xf dotnet.tar.gz
 ~# rm dotnet.tar.gz
 ~# export DOTNET_ROOT=~/dotnet
 ~# export PATH=$PATH:~/dotnet
 ~# dotnet --version
-8.0.100-preview.3.23178.7
+8.0.405
 ```
 
 The `DOTNET_ROOT` environment variable is required to launch an application with their executables (like `myapp.exe`). The executables look for this environment variable to find the runtime if it isn't installed in its regular location. The `PATH` environment variable must be updated if you want to use `dotnet` without absolute paths to its location. Setting both of these environment variables is optional.
