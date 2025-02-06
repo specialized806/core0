@@ -21,7 +21,7 @@ Each of the distributions can be downloaded from:
 - [Microsoft .NET website](https://dotnet.microsoft.com/download/dotnet/8.0)
 - [.NET 8 release notes](README.md)
 
-[Container images](https://hub.docker.com/r/microsoft/dotnet/) are provided for Windows (Nano Server and Server Core) and Linux (Alpine, Debian, and Ubuntu).
+[Container images](https://hub.docker.com/_/microsoft-dotnet) are provided for Windows (Nano Server and Server Core) and Linux (Alpine, Debian, and Ubuntu).
 
 ## Windows Package Manager CLI (winget)
 
@@ -37,7 +37,7 @@ See [Install with Windows Package Manager (winget)](https://learn.microsoft.com/
 
 You can install any of the distributions with MSI. The following image demonstrates installing the .NET SDK. After launching the MSI, click "Install" and you will be taken through the process of installing the SDK.
 
-![image](https://user-images.githubusercontent.com/94140381/186767749-45306b95-cd1b-4d85-9634-42fb83a1cf4b.png)
+![dotnet installer](https://github.com/dotnet/core/assets/44339330/62cbf002-89ab-4d63-9f0a-69460a6ab3d0)
 
 ## Windows Server Hosting with IIS
 
@@ -50,13 +50,13 @@ You can install .NET with a binary archive. This option is required if you want 
 The following workflow demonstrates downloading, unpacking, configuring, and running the .NET SDK from the command line. You may choose to do some of these tasks via the browser and functionality provided by your operating system.
 
 ```console
-C:\>curl -Lo dotnet.zip  https://download.visualstudio.microsoft.com/download/pr/d4e1c5a0-a275-472f-b3eb-e61e1637cb1d/4a1b6861032e3927adca5538ad01e370/dotnet-sdk-8.0.100-preview.3.23178.7-win-x64.exe
+C:\>curl -Lo dotnet.zip https://download.visualstudio.microsoft.com/download/pr/4b3b488c-9e69-4d60-bba2-79412b68d15d/b55f49a270c3413a6ea4b208f820515d/dotnet-sdk-8.0.405-win-x64.exe
 C:\>tar -C dotnet -xf dotnet.zip
 C:\>del dotnet.zip
 C:\>set DOTNET_ROOT=C:\dotnet
 C:\>set PATH=%PATH%;C:\dotnet
 C:\>dotnet --version
-8.0.100-preview.3.23178.7
+8.0.405
 ```
 
 The `DOTNET_ROOT` environment variable is required to launch an application with their executables (like `myapp.exe`). The executables look for this environment variable to find the runtime if it isn't installed in its regular location. The `PATH` environment variable must be updated if you want to use `dotnet` without absolute paths to its location. Setting both of these environment variables is optional.
